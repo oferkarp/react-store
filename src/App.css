@@ -2,6 +2,10 @@
     color: #70bb70;
   }
   
+  .navbar::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar for webkit-based browsers */
+  }
+
   .navbar {
     padding: 10px;
     margin: 0 auto;
@@ -10,7 +14,7 @@
     justify-content: center;
     align-items: center;
     background-color: #e1eee1;
-    overflow-x: auto; /* Enable horizontal scroll for smaller screens */
+    overflow-x: hidden; /* Enable horizontal scroll for smaller screens */
   }
   
   .navbar .links {
@@ -60,3 +64,34 @@
     }
   }
   
+  /* Styles for the buttons to match the navbar */
+.btn {
+  /* Match the font size and padding */
+  font-size: 16px;
+  padding: 8px 20px;
+  /* Add border-radius */
+  border-radius: 5px;
+  /* Match the colors */
+  color: #fff;
+}
+
+/* Button colors */
+.btn-info {
+  background-color: #17a2b8; /* Match the navbar color */
+  /* Add any other styles specific to the info button */
+  
+}
+
+.btn-success {
+  background-color: #28a745; /* Match the navbar color */
+  /* Add any other styles specific to the success button */
+}
+
+/* Style for the input within the navbar */
+.nav input {
+  padding: 8px 12px; /* Match padding with navbar elements */
+  border-radius: 5px; /* Add a border-radius */
+  border: 1px solid #ccc; /* Add a border */
+  font-size: 16px; /* Match the font size */
+  /* Other styles you might want to adjust */
+}

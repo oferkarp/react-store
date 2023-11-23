@@ -7,7 +7,7 @@ function MyFooter() {
       <footer className="py-3 my-4">
         <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item">
-            <Link to="/" className="nav-link px-2 text-muted" aria-label="Go to Home">
+            <Link to="/Home" className="nav-link px-2 text-muted" aria-label="Go to Home">
               Home
             </Link>
           </li>
@@ -22,7 +22,7 @@ function MyFooter() {
             </Link>
           </li>
           <li className="nav-item"></li>
-          <Link className="nav-link" to="/add_product">
+          <Link to="/add_product" className="nav-link px-2 text-muted" aria-label="Go to Register">
             Add Product
           </Link>
         </ul>

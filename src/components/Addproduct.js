@@ -1,25 +1,32 @@
 import React from 'react'
-function add_Product() {
-  console.log("product Added");
-  }
-  
+import axios from 'axios'
+import { useState } from 'react'
+
 
 function Addproduct() {
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState(0)
+  function addProduct() {
+    console.log("productAdded ", name, price);
+    axios.post("https://django-rest-framework-store.onrender.com/products", { name: name, price: price, category: "" })((res) => {});
+    }
+    
   return (
     <>
-    Name:
-    <br />
-    <input />
-    <br />
-    Price:
-    <br />
-    <input type="number" step="0.01" />
-    <br />
-    <button className="btn btn-primary" onClick={add_Product}>
-    Add Product
-    </button>
-    </>
-    
+    <div className="text-center">
+      Name:
+      <br />
+      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <br />
+      Price:
+      <br />
+      <input type="number" step="1" value={price} onChange={(e) => setPrice(e.target.value)} />
+      <br />
+      <button className="btn btn-success" onClick={addProduct}>
+        Add Product
+      </button>
+    </div>
+  </>  
   )
 }
 

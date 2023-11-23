@@ -7,48 +7,16 @@ import Login from './components/Login'
 import NoPage from './components/NoPage'
 import MyFooter from './components/MyFooter'
 import Addproduct from './components/Addproduct'
+import Home from './components/Home'
 
 function App() {
-  const HOST_URL = "http://127.0.0.1:8000/products";
-  // https://django-rest-product.onrender.com/product
+  const HOST_URL = "https://django-rest-framework-store.onrender.com/products";
   const [products, setProducts] = useState([])
   const [cateogries, setCategories] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([""])
   
 
   useEffect(getCategories, []) // when loading the page for the first time - getCategories()
-
-  function handleCategoryClick(categoryId) {
-    console.log(categoryId)
-    setFilteredProducts(categoryId)
-  }
-
-  
-  function getCategories() {
-    axios
-      .get(HOST_URL + "/category/")
-      .then((response) => {
-        console.log('categories', response.data)
-        setCategories(response.data)
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error)
-      })
-  }
-
-  function searchproduct(filterdProductname) {
-    console.log(filterdProductname)
-    axios
-    .get(HOST_URL + "/?search=" + filterdProductname)
-    .then((response) => {
-      console.log('product', response.data)
-      setProducts(response.data) // Update the products state
-    })
-    .catch((error) => {
-      console.error('Error fetching data:', error)
-    })
-    setFilteredProducts("dfdgsgdfgdfgdf")
-  }
 
   useEffect(() => {
     // Fetch products when the component mounts
@@ -61,6 +29,51 @@ function App() {
         console.error('Error fetching products:', error)
       })
   }, [filteredProducts])
+
+
+  function getCategories() {
+    axios
+      .get(HOST_URL + "/category/")
+      .then((response) => {
+        console.log('categories', response.data)
+        setCategories(response.data)
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error)
+      })
+  }
+
+  function handleCategoryClick(categoryId) {
+    console.log(categoryId)
+    setFilteredProducts(categoryId)
+  }
+
+  
+function searchproduct(filterdProductname) {
+  console.log(filterdProductname);
+
+  axios
+    .get(HOST_URL + "/?search=" + filterdProductname)
+    .then((response) => {
+      console.log('product', response.data);
+      if (response.data.length === 0) {
+        // Alert when no products are found
+        alert("No products found for the search");
+        // Update the products state with an empty array to clear any previous results
+        setProducts([]);
+      } else {
+        // Update the products state with the search results
+        setProducts(response.data);
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      // Handle the error, for instance, displaying an error message
+    });
+  
+  setFilteredProducts(""); // Clear the search input
+}
+
 
   return (
     <>
@@ -77,12 +90,12 @@ function App() {
                       <Product key={product.id} product={product} />
                     ))}
                   </div>
-                  {/* <Header></Header> */}
                 </div>
               </>
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/add_product" element={<Addproduct />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
