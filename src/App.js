@@ -8,6 +8,7 @@ import NoPage from './components/NoPage'
 import MyFooter from './components/MyFooter'
 import Addproduct from './components/Addproduct'
 import Home from './components/Home'
+import Cart from './components/Cart'
 
 function App() {
   const HOST_URL = "https://django-rest-framework-store.onrender.com/products";
@@ -97,6 +98,7 @@ function searchproduct(filterdProductname) {
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/add_product" element={<Addproduct />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         <MyFooter />

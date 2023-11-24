@@ -51,8 +51,6 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
               Search
             </Link>
           </li>
-          {/* <a className="nav-link active" href="http://localhost:3000/login">Login</a> */}
-          {/* Other navigation items */}
           {/* Display login button if not logged in */}
           {!isLoggedIn && location.pathname !== '/login' && (
             <li className="nav-item">
@@ -61,11 +59,10 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
               </Link>
             </li>
           )}
-
           {/* Display logout button if logged in */}
           {isLoggedIn && (
             <li className="nav-item">
-              <Link className="btn btn-danger"  to="/logout" onClick={handleLogout}>
+              <Link className="btn btn-danger"  to="/" onClick={handleLogout}>
                 Logout
               </Link>
             </li>
