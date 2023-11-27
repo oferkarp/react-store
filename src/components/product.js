@@ -2,10 +2,9 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-function Product({ product, onAddToCart }) {
+function Product({ product }) {
   const handleAddToCart = () => {
     // Pass the product information to the onAddToCart function
-    onAddToCart(product);
   };
 
   return (

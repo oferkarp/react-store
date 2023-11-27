@@ -1,20 +1,60 @@
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { BsCart4 } from 'react-icons/bs'
+import { jwtDecode } from 'jwt-decode' // Importing the named export directly without 'default'
+import axios from 'axios'
 import '../App.css'
 
 function Navbar({ categories, handleCategoryClick, searchproduct }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // State to track user's login status
   const [filterdProductname, setFilteredProductname] = useState('')
   const location = useLocation()
+  const [token, setToken] = useState('')
+  const [username, setUsername] = useState('')
+  const [userid, setuserid] = useState('')
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token')
+    if (storedToken) {
+      setToken(storedToken)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token)
+        setuserid(decodedToken.user_id)
+      } catch (error) {
+        console.error('Error decoding token:', error)
+      }
+    }
+  }, [token])
+
+  useEffect(() => {
+    try {
+      if (userid) {
+        axios
+          .get(`https://django-rest-framework-store.onrender.com/user/${userid}/`)
+          .then((response) => {
+            const fetchedUsername = response.data.username
+            setUsername(fetchedUsername)
+          })
+          .catch((error) => {
+            console.error('Error fetching username:', error)
+          })
+      }
+    } catch (error) {
+      console.error('Error in fetching username:', error)
+    }
+  }, [userid])
 
   const handleLogout = () => {
-    // Perform logout action - Clear user session, reset state, etc.
-    setIsLoggedIn(false) // Set the login status to false
-  }
-
-  const handleManualLogin = () => {
-    setIsLoggedIn(true); // For demonstration purposes - manually set isLoggedIn to true
+    localStorage.removeItem('token');
+    setUsername('');
+    navigate('/');
+    window.location.reload(); // Reload the page after logout
   };
 
   return (
@@ -52,21 +92,30 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
             </Link>
           </li>
           {/* Display login button if not logged in */}
-          {!isLoggedIn && location.pathname !== '/login' && (
+          {!token && location.pathname !== '/login' && (
             <li className="nav-item">
-              <Link className="btn btn-success" to="/login" onClick={handleManualLogin}>
+              <Link className="btn btn-success" to="/login">
                 Login
               </Link>
             </li>
           )}
           {/* Display logout button if logged in */}
-          {isLoggedIn && (
+          {token && (
             <li className="nav-item">
               <Link className="btn btn-danger"  to="/" onClick={handleLogout}>
                 Logout
               </Link>
             </li>
           )}
+          <div>
+            {username ? (
+              <p className="welcome-message">
+                Welcome, <span className="username">{username}</span>!
+              </p>
+            ) : (
+              <p className="welcome-message">Welcome, guest!</p>
+            )}
+          </div>{' '}
           <li className="nav-item">
             <Link to="/cart">
               <BsCart4 style={{ fontSize: '2em', color: 'blue' }} />
@@ -77,5 +126,4 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
     </>
   )
 }
-
 export default Navbar

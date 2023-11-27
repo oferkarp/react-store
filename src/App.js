@@ -36,7 +36,7 @@ function App() {
     axios
       .get(HOST_URL + "/category/")
       .then((response) => {
-        console.log('categories', response.data)
+        // console.log('categories', response.data)
         setCategories(response.data)
       })
       .catch((error) => {
@@ -78,7 +78,7 @@ function searchproduct(filterdProductname) {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Navbar categories={cateogries} handleCategoryClick={handleCategoryClick} searchproduct={searchproduct} />
         <Routes>
           <Route
