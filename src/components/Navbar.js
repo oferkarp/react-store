@@ -11,8 +11,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
   const [token, setToken] = useState('')
   const [username, setUsername] = useState('')
   const [userid, setuserid] = useState('')
-  const navigate = useNavigate();
-
+  const navigate = useNavigate()
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token')
@@ -51,11 +50,11 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
   }, [userid])
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setUsername('');
-    navigate('/');
-    window.location.reload(); // Reload the page after logout
-  };
+    localStorage.removeItem('token')
+    setUsername('')
+    window.location.reload() // Reload the page after logout
+    navigate('/')
+  }
 
   return (
     <>
@@ -77,23 +76,24 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
             <input
               value={filterdProductname}
               onChange={(e) => setFilteredProductname(e.target.value)}
-              className="nav-input" // Apply the input style class
+              className="nav-input"
+              style={{ marginRight: '10px' }}
               placeholder="Search Product" // Optionally, add a placeholder
             />
           </li>
           <li className="nav">
             <Link
               to="/"
-              className="btn btn-info" // Apply the modified styles for the info button
+              className="btn btn-info"
               onClick={() => searchproduct(filterdProductname)}
-              style={{ borderRadius: '5px', padding: '8px 20px', fontSize: '16px' }}
+              style={{ borderRadius: '5px', padding: '8px 20px', fontSize: '16px', marginRight: '10px' }}
             >
               Search
             </Link>
           </li>
           {/* Display login button if not logged in */}
           {!token && location.pathname !== '/login' && (
-            <li className="nav-item">
+            <li className="nav-item" style={{ marginRight: '10px' }}>
               <Link className="btn btn-success" to="/login">
                 Login
               </Link>
@@ -101,8 +101,8 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
           )}
           {/* Display logout button if logged in */}
           {token && (
-            <li className="nav-item">
-              <Link className="btn btn-danger"  to="/" onClick={handleLogout}>
+            <li className="nav-item" style={{ marginRight: '10px' }}>
+              <Link className="btn btn-danger" to="/" onClick={handleLogout}>
                 Logout
               </Link>
             </li>
@@ -116,11 +116,13 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
               <p className="welcome-message">Welcome, guest!</p>
             )}
           </div>{' '}
-          <li className="nav-item">
-            <Link to="/cart">
-              <BsCart4 style={{ fontSize: '2em', color: 'blue' }} />
-            </Link>
-          </li>
+          {token && (
+            <li className="nav-item">
+              <Link to="/cart">
+                <BsCart4 style={{ fontSize: '2em', color: 'blue' }} />
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </>

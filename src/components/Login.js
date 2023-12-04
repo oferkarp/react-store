@@ -25,8 +25,7 @@ function Login() {
 
       // Redirect to the main page after successful login
       navigate('/') // Replace '/' with the desired route
-      window.location.reload(); // Reload the page after logout
-
+      window.location.reload() // Reload the page after logout
 
       // Optionally, redirect or update state to reflect login success
     } catch (error) {
@@ -41,7 +40,7 @@ function Login() {
         <div className="col-md-6">
           <h2 className="text-center mb-4">Login</h2>
           {error && <div className="alert alert-danger">{error}</div>}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
             <div className="mb-3">
               <label htmlFor="username" className="form-label">
                 Username:

@@ -105,3 +105,14 @@
 .username {
   color: #0066ff; /* Change the color to your preference */
 }
+
+.circular-image {
+  width: 300px; /* Adjust the width and height as needed */
+  height: 300px;
+  object-fit: cover; /* Maintains the image's aspect ratio */
+}
+
+.description-heading {
+  font-weight: bold;
+  /* Add any other styles you want for the description heading */
+}

@@ -1,35 +1,31 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function MyFooter() {
   return (
-    <div className="container">
-      <footer className="py-3 my-4">
-        <ul className="nav justify-content-center border-bottom pb-3 mb-3">
-          <li className="nav-item">
-            <Link to="/Home" className="nav-link px-2 text-muted" aria-label="Go to Home">
+    <footer className="bg-light py-4">
+      <div className="container text-center">
+        <ul className="list-inline mb-4">
+          <li className="list-inline-item mx-2">
+            <Link to="/Home" className="text-muted" aria-label="Go to Home">
               Home
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/login" className="nav-link px-2 text-muted" aria-label="Go to Login">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/register" className="nav-link px-2 text-muted" aria-label="Go to Register">
+          <li className="list-inline-item mx-2">
+            <Link to="/register" className="text-muted" aria-label="Go to Register">
               Register
             </Link>
           </li>
-          <li className="nav-item"></li>
-          <Link to="/add_product" className="nav-link px-2 text-muted" aria-label="Go to Register">
-            Add Product
-          </Link>
+          <li className="list-inline-item mx-2">
+            <Link to="/add_product" className="text-muted" aria-label="Go to Add Product">
+              Add Product
+            </Link>
+          </li>
         </ul>
-        <p className="text-center text-muted">© 2023 Company ©</p>
-      </footer>
-    </div>
-  )
+        <p className="text-muted mb-0">© 2023 Company</p>
+      </div>
+    </footer>
+  );
 }
 
-export default MyFooter
+export default MyFooter;
