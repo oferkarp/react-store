@@ -1,52 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { jwtDecode } from 'jwt-decode' 
 import '../App.css';
 
 function Product({ product }) {
   const storedToken = localStorage.getItem('token');
+  const [token, setToken] = useState('')
+  const [userid, setuserid] = useState('')
 
-  const handleAddToCart = async (productId) => {
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token')
+    if (storedToken) {
+      setToken(storedToken)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token)
+        setuserid(decodedToken.user_id)
+      } catch (error) {
+        console.error('Error decoding token:', error)
+      }
+    }
+  }, [token])
+
+  const handleAddToCart = async (productId, userId) => {
     try {
       const response = await fetch('https://django-rest-framework-store.onrender.com/cart_items/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // Add any necessary headers like authentication tokens here
         },
-        body: JSON.stringify({ product: productId }), // Change to send product ID as 'product'
+        body: JSON.stringify({ product: productId, user: userId }), // Include both product and user ID
       });
 
       if (response.ok) {
-        // Handle success
-        console.log('Product added to cart successfully!');
+        alert('Product added to cart!');
       } else {
-        // Handle errors
-        console.error('Failed to add product to cart');
+        alert('Failed to add product to cart');
       }
     } catch (error) {
       console.error('Error adding product to cart:', error);
+      alert('Error adding product to cart');
     }
   };
-  console.log('Product:', product);
 
   return (
     <div className="col-md-4 mb-4">
-    <Card className="h-100">
-      <img className="card-img-top circular-image" src={`https://django-rest-framework-store.onrender.com${product.image}`} alt={`Product ${product.name}`} />
-      <Card.Body>
-        <Card.Title>{product.name}</Card.Title>
-        <Card.Text><strong>Price:</strong> ${parseFloat(product.price).toFixed(2)}</Card.Text>
-        <Card.Text><strong>Stock:</strong> {product.stock}</Card.Text>
-        <Card.Text><strong>Description:</strong>{product.description}</Card.Text>
-        {storedToken && (
-          <Button variant="primary" onClick={() => handleAddToCart(product.id)}>
-            Add to Cart
-          </Button>
-        )}
-      </Card.Body>
-    </Card>
-  </div>
+      <Card className="h-100">
+        <img
+          className="card-img-top circular-image"
+          src={`https://django-rest-framework-store.onrender.com${product.image}`}
+          alt={`Product ${product.name}`}
+        />
+        <Card.Body>
+          <Card.Title>{product.name}</Card.Title>
+          <Card.Text><strong>Price:</strong> ${parseFloat(product.price).toFixed(2)}</Card.Text>
+          <Card.Text><strong>Stock:</strong> {product.stock}</Card.Text>
+          <Card.Text><strong>Description:</strong>{product.description}</Card.Text>
+          {storedToken && (
+            <Button variant="primary" onClick={() => handleAddToCart(product.id, userid)}>
+              Add to Cart
+            </Button>
+          )}
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 

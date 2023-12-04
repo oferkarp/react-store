@@ -116,3 +116,49 @@
   font-weight: bold;
   /* Add any other styles you want for the description heading */
 }
+
+/* Cart container */
+.cart-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Cart items */
+.cart-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Cart item */
+.cart-item {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+/* Product image */
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+/* Item details */
+.item-details {
+  flex-grow: 1;
+}
+
+/* Empty cart message */
+.empty-cart-message {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+}

@@ -99,7 +99,7 @@ function searchproduct(filterdProductname) {
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/add_product" element={<Addproduct />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/:userId" element={<Cart />} />
           <Route path='/register' element={<Registration />} />
           <Route path="*" element={<NoPage />} />
         </Routes>

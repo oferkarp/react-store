@@ -118,7 +118,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
           </div>{' '}
           {token && (
             <li className="nav-item">
-              <Link to="/cart">
+              <Link to={`/cart/${userid}`}>
                 <BsCart4 style={{ fontSize: '2em', color: 'blue' }} />
               </Link>
             </li>
