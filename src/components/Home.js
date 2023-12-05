@@ -7,7 +7,7 @@ function Home() {
       <div className="text-center">
         <h1>Welcome to my Store</h1>
         <p className="mb-4">Explore our collection of products.</p>
-        <Link to="/" className="btn btn-primary">
+        <Link to="/react-store" className="btn btn-primary">
           View Products
         </Link>
       </div>

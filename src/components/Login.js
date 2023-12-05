@@ -24,7 +24,7 @@ function Login() {
       console.log('Login successful!', response.data)
 
       // Redirect to the main page after successful login
-      navigate('/') // Replace '/' with the desired route
+      navigate('/react-store') // Replace '/' with the desired route
       window.location.reload() // Reload the page after logout
 
       // Optionally, redirect or update state to reflect login success

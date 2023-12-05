@@ -53,7 +53,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
     localStorage.removeItem('token')
     setUsername('')
     window.location.reload() // Reload the page after logout
-    navigate('/')
+    navigate('/react-store')
   }
 
   return (
