@@ -46,13 +46,13 @@ function App() {
   }
 
   function handleCategoryClick(categoryId) {
-    console.log(categoryId)
+    // console.log(categoryId)
     setFilteredProducts(categoryId)
   }
 
   
 function searchproduct(filterdProductname) {
-  console.log(filterdProductname);
+  // console.log(filterdProductname);
 
   axios
     .get(HOST_URL + "/?search=" + filterdProductname)

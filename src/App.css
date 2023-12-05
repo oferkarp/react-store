@@ -162,3 +162,51 @@
   font-style: italic;
   color: #999;
 }
+
+
+.cart-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+.cart-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.cart-item {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensuring content doesn't overflow */
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.item-details {
+  text-align: left;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #ff4d4d;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff1a1a;
+}
