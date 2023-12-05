@@ -83,7 +83,7 @@ function searchproduct(filterdProductname) {
         <Navbar categories={cateogries} handleCategoryClick={handleCategoryClick} searchproduct={searchproduct} />
         <Routes>
           <Route
-            path="/"
+            path="/react-store"
             element={
               <>
                 <div className="container">

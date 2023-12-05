@@ -61,13 +61,13 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
       <nav className="navbar">
         <ul className="nav">
           <li className="nav">
-            <Link to="/" className="nav-link" onClick={() => handleCategoryClick('')}>
+            <Link to="/react-store" className="nav-link" onClick={() => handleCategoryClick('')}>
               All Products
             </Link>
           </li>
           {categories.map((category, index) => (
             <li key={index} className="nav-item">
-              <Link to="/" className="nav-link active" onClick={() => handleCategoryClick(category)}>
+              <Link to="/react-store" className="nav-link active" onClick={() => handleCategoryClick(category)}>
                 {category}
               </Link>
             </li>
@@ -83,7 +83,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
           </li>
           <li className="nav">
             <Link
-              to="/"
+              to="/react-store"
               className="btn btn-info"
               onClick={() => searchproduct(filterdProductname)}
               style={{ borderRadius: '5px', padding: '8px 20px', fontSize: '16px', marginRight: '10px' }}
@@ -102,7 +102,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
           {/* Display logout button if logged in */}
           {token && (
             <li className="nav-item" style={{ marginRight: '10px' }}>
-              <Link className="btn btn-danger" to="/" onClick={handleLogout}>
+              <Link className="btn btn-danger" to="/react-store" onClick={handleLogout}>
                 Logout
               </Link>
             </li>
