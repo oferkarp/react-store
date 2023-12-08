@@ -11,69 +11,95 @@ function Cart() {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch(`https://django-rest-framework-store.onrender.com/user_cart_items/${userId}`)
+        const authToken = localStorage.getItem('token');
+        const response = await fetch(`https://django-rest-framework-store.onrender.com/user_cart_items/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${authToken}`, // Include the token in the request headers
+            'Content-Type': 'application/json',
+          },
+        });
+  
         if (response.ok) {
-          const responseData = await response.json()
-          const consolidatedCart = []
-
+          const responseData = await response.json();
+          const consolidatedCart = [];
+  
           responseData.forEach((cartItem) => {
-            const existingProduct = consolidatedCart.find((item) => item.product === cartItem.product)
-
+            const existingProduct = consolidatedCart.find((item) => item.product === cartItem.product);
+  
             if (existingProduct) {
-              existingProduct.quantity += cartItem.quantity
+              existingProduct.quantity += cartItem.quantity;
             } else {
-              consolidatedCart.push(cartItem)
+              consolidatedCart.push(cartItem);
             }
-          })
-
-          setCartItems(consolidatedCart)
+          });
+  
+          setCartItems(consolidatedCart);
         } else {
-          console.error('Failed to fetch cart items')
+          console.error('Failed to fetch cart items');
         }
       } catch (error) {
-        console.error('Error fetching cart items:', error)
+        console.error('Error fetching cart items:', error);
       }
-    }
-
-    fetchCartItems()
-  }, [userId])
+    };
+  
+    fetchCartItems();
+  }, [userId]);
 
   useEffect(() => {
     const fetchProduct = async (productId) => {
       try {
-        const response = await fetch(`https://django-rest-framework-store.onrender.com/products/${productId}`)
+        const authToken = localStorage.getItem('token');
+        const response = await fetch(`https://django-rest-framework-store.onrender.com/products/${productId}`, {
+          headers: {
+            Authorization: `Bearer ${authToken}`, // Include the token in the request headers
+            'Content-Type': 'application/json',
+          },
+        });
+  
         if (response.ok) {
-          const product = await response.json()
-          setProductData((prevData) => ({ ...prevData, [productId]: product }))
+          const product = await response.json();
+          setProductData((prevData) => ({ ...prevData, [productId]: product }));
         } else {
-          console.error(`Failed to fetch product details for product ID: ${productId}`)
+          console.error(`Failed to fetch product details for product ID: ${productId}`);
         }
       } catch (error) {
-        console.error('Error fetching product:', error)
+        console.error('Error fetching product:', error);
       }
-    }
-
+    };
+  
     cartItems.forEach((cartItem) => {
       if (!productData[cartItem.product]) {
-        fetchProduct(cartItem.product)
+        fetchProduct(cartItem.product);
       }
-    })
-  }, [cartItems, productData])
+    });
+  }, [cartItems, productData]);
+  
 
   const deleteCartItem = async (productId) => {
     try {
-      const response = await axios.delete(`https://django-rest-framework-store.onrender.com/delete_cart_item/${userId}/${productId}/`)
+      const authToken = localStorage.getItem('token');
+  
+      const response = await axios.delete(
+        `https://django-rest-framework-store.onrender.com/delete_cart_item/${userId}/${productId}/`,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`, // Include the token in the request headers
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
       if (response.status === 204) {
-
-        const updatedCartItems = cartItems.filter((item) => item.product !== productId)
-        setCartItems(updatedCartItems)
+        const updatedCartItems = cartItems.filter((item) => item.product !== productId);
+        setCartItems(updatedCartItems);
       } else {
-        console.error('Failed to delete cart item')
+        console.error('Failed to delete cart item');
       }
     } catch (error) {
-      console.error('Error deleting cart item:', error)
+      console.error('Error deleting cart item:', error);
     }
-  }
+  };
+  
 
   const checkout = async () => {
     try {
@@ -95,9 +121,9 @@ function Cart() {
       )
 
       if (response.status === 201) {
-        // Order created successfully
         setCartItems([]) // Clear the cart items after creating the order
         clearCart(userId)
+        alert('order complete');
       } else {
         console.error('Failed to create order')
       }
@@ -122,8 +148,8 @@ function Cart() {
       )
 
       if (response.status === 200) {
-        console.log('Cart cleared successfully')
-        setCartItems([]);
+        // console.log('Cart cleared successfully')
+        setCartItems([])
 
         // Perform any additional actions after clearing the cart
       } else {
@@ -136,7 +162,7 @@ function Cart() {
 
   return (
     <div className="cart-container">
-      <h2>Cart</h2>
+      <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Your cart</h2>
       {cartItems.length > 0 ? (
         <div className="cart-items">
           {cartItems.map((cartItem) => {
@@ -165,11 +191,13 @@ function Cart() {
           })}
         </div>
       ) : (
-        <p>Your cart is empty.</p>
+        <p style={{ textAlign: 'center', marginTop: '20px' }}>Your cart is empty.</p>
       )}
       {cartItems.length > 0 && (
-        <div>
-          <button onClick={checkout}>Checkout</button>
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <button style={{ marginRight: '10px' }} onClick={checkout}>
+            Checkout
+          </button>
           <button onClick={() => clearCart(userId)}>Clear Cart</button>
         </div>
       )}

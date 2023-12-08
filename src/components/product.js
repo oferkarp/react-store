@@ -29,14 +29,17 @@ function Product({ product }) {
 
   const handleAddToCart = async (productId, userId) => {
     try {
+      const authToken = localStorage.getItem('token'); // Retrieve the authentication token from local storage
+  
       const response = await fetch('https://django-rest-framework-store.onrender.com/cart_items/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`, // Include the token in the request headers
         },
         body: JSON.stringify({ product: productId, user: userId }), // Include both product and user ID
       });
-
+  
       if (response.ok) {
         alert('Product added to cart!');
       } else {
@@ -46,7 +49,7 @@ function Product({ product }) {
       console.error('Error adding product to cart:', error);
       alert('Error adding product to cart');
     }
-  };
+  };  
 
   return (
     <div className="col-md-4 mb-4">

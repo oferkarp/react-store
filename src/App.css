@@ -3,7 +3,7 @@
   }
   
   .navbar::-webkit-scrollbar {
-    display: none; /* Hide the scrollbar for webkit-based browsers */
+    display: none; 
   }
 
   .navbar {
@@ -14,7 +14,7 @@
     justify-content: center;
     align-items: center;
     background-color: #e1eee1;
-    overflow-x: hidden; /* Enable horizontal scroll for smaller screens */
+    overflow-x: hidden; 
   }
   
   .navbar .links {
@@ -64,36 +64,28 @@
     }
   }
   
-  /* Styles for the buttons to match the navbar */
 .btn {
-  /* Match the font size and padding */
   font-size: 16px;
   padding: 8px 20px;
-  /* Add border-radius */
   border-radius: 5px;
-  /* Match the colors */
   color: #fff;
 }
 
 /* Button colors */
 .btn-info {
-  background-color: #17a2b8; /* Match the navbar color */
-  /* Add any other styles specific to the info button */
+  background-color: #17a2b8; 
   
 }
 
 .btn-success {
-  background-color: #28a745; /* Match the navbar color */
-  /* Add any other styles specific to the success button */
+  background-color: #28a745; 
 }
 
-/* Style for the input within the navbar */
 .nav input {
-  padding: 8px 12px; /* Match padding with navbar elements */
-  border-radius: 5px; /* Add a border-radius */
-  border: 1px solid #ccc; /* Add a border */
-  font-size: 16px; /* Match the font size */
-  /* Other styles you might want to adjust */
+  padding: 8px 12px; 
+  border-radius: 5px; 
+  border: 1px solid #ccc; 
+  font-size: 16px; 
 }
 
 .welcome-message {
@@ -103,18 +95,17 @@
 }
 
 .username {
-  color: #0066ff; /* Change the color to your preference */
+  color: #0066ff; 
 }
 
 .circular-image {
-  width: 300px; /* Adjust the width and height as needed */
+  width: 300px; 
   height: 300px;
-  object-fit: cover; /* Maintains the image's aspect ratio */
+  object-fit: cover; 
 }
 
 .description-heading {
   font-weight: bold;
-  /* Add any other styles you want for the description heading */
 }
 
 /* Cart container */
