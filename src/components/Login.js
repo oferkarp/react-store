@@ -20,6 +20,9 @@ function Login() {
       const { access } = response.data
       localStorage.setItem('token', access) // Save the token to local storage
 
+      // Save the token to Axios defaults
+      axios.defaults.headers.common['Authorization'] = `Bearer ${access}`; // Use 'access' for the token
+
       // Handle the response accordingly (e.g., save authentication token)
       console.log('Login successful!', response.data)
 

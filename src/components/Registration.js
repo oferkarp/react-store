@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
+
 
 function Registration() {
   const [username, setUsername] = useState('');
@@ -8,6 +10,7 @@ function Registration() {
   const [city, setCity] = useState('');
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate() 
 
   useEffect(() => {
     let errorTimer, successTimer;
@@ -23,6 +26,7 @@ function Registration() {
     if (successMessage) {
       successTimer = setTimeout(() => {
         setSuccessMessage('');
+        navigate('/login');
       }, 5000);
     }
 
@@ -31,7 +35,7 @@ function Registration() {
       clearTimeout(errorTimer);
       clearTimeout(successTimer);
     };
-  }, [error, successMessage]);
+  }, [error, successMessage, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,6 +49,7 @@ function Registration() {
       });
 
       setSuccessMessage('Registration successful!'); // Set success message
+
     } catch (error) {
       if (error.response && error.response.data) {
         // Extract error messages from the response data

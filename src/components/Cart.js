@@ -80,6 +80,38 @@ function Cart() {
     }
   };
 
+  const checkout = async () => {
+    try {
+      const csrftoken = localStorage.getItem('token');
+  
+      console.log('CSRF Token:', csrftoken);
+      console.log('Cart Items:', cartItems);
+  
+      const authToken = localStorage.getItem('token'); // Retrieve the authentication token from local storage
+
+      const response = await axios.post(
+        `https://django-rest-framework-store.onrender.com/checkout/`,
+        {
+          cartItems: cartItems.map((item) => ({ product: item.product, quantity: item.quantity })),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`, // Include the token in the request headers
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+      if (response.status === 201) {
+        // Order created successfully
+        setCartItems([]); // Clear the cart items after creating the order
+      } else {
+        console.error('Failed to create order');
+      }
+    } catch (error) {
+      console.error('Error creating order:', error);
+    }
+  };
   
   return (
     <div class="cart-container">
@@ -108,6 +140,9 @@ function Cart() {
     ) : (
       <p>Your cart is empty.</p>
     )}
+    {cartItems.length > 0 && (
+        <button onClick={checkout}>Checkout</button>
+      )}
   </div>
   );
 }

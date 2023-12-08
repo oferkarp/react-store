@@ -16,11 +16,6 @@ function MyFooter() {
               Register
             </Link>
           </li>
-          <li className="list-inline-item mx-2">
-            <Link to="/add_product" className="text-muted" aria-label="Go to Add Product">
-              Add Product
-            </Link>
-          </li>
         </ul>
         <p className="text-muted mb-0">© 2023 Company</p>
       </div>
