@@ -64,9 +64,7 @@ function Cart() {
     try {
       const response = await axios.delete(`https://django-rest-framework-store.onrender.com/delete_cart_item/${userId}/${productId}/`)
       if (response.status === 204) {
-        // Cart item deleted successfully
-        // console.log('Cart item deleted');
-        // Update the cart view if needed
+
         const updatedCartItems = cartItems.filter((item) => item.product !== productId)
         setCartItems(updatedCartItems)
       } else {
@@ -125,6 +123,8 @@ function Cart() {
 
       if (response.status === 200) {
         console.log('Cart cleared successfully')
+        setCartItems([]);
+
         // Perform any additional actions after clearing the cart
       } else {
         console.error('Failed to clear cart')
