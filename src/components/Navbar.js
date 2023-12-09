@@ -116,12 +116,19 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
               <p className="welcome-message">Welcome, guest!</p>
             )}
           </div>{' '}
-          {token && (
-            <li className="nav-item">
-              <Link to={`/cart/${userid}`}>
-                <BsCart4 style={{ fontSize: '2em', color: 'blue' }} />
-              </Link>
-            </li>
+          {token && userid && (
+            <React.Fragment>
+              <li className="nav-item">
+                <Link to={`/cart/${userid}`}>
+                  <BsCart4 style={{ fontSize: '2em', color: 'blue' }} />
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="btn btn-success" to={`/order/${userid}`}>
+                  Orders
+                </Link>
+              </li>
+            </React.Fragment>
           )}
         </ul>
       </nav>

@@ -10,6 +10,7 @@ import Addproduct from './components/Addproduct'
 import Home from './components/Home'
 import Cart from './components/Cart'
 import Registration from './components/Registration'
+import Order from './components/Order'
 
 function App() {
   const HOST_URL = "https://django-rest-framework-store.onrender.com/products";
@@ -100,6 +101,7 @@ function searchproduct(filterdProductname) {
           <Route path="/home" element={<Home />} />
           <Route path="/add_product" element={<Addproduct />} />
           <Route path="/cart/:userId" element={<Cart />} />
+          <Route path="/order/:userId" element={<Order />} />
           <Route path='/register' element={<Registration />} />
           <Route path="*" element={<NoPage />} />
         </Routes>

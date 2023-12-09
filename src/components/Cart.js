@@ -103,34 +103,36 @@ function Cart() {
 
   const checkout = async () => {
     try {
-      console.log('Cart Items:', cartItems)
-
-      const authToken = localStorage.getItem('token') // Retrieve the authentication token from local storage
-
+      console.log('Cart Items:', cartItems);
+  
+      const authToken = localStorage.getItem('token');
+  
       const response = await axios.post(
         `https://django-rest-framework-store.onrender.com/checkout/`,
         {
           cartItems: cartItems.map((item) => ({ product: item.product, quantity: item.quantity })),
+          userId: userId, 
         },
         {
           headers: {
-            Authorization: `Bearer ${authToken}`, // Include the token in the request headers
+            Authorization: `Bearer ${authToken}`,
             'Content-Type': 'application/json',
           },
         }
-      )
-
+      );
+  
       if (response.status === 201) {
-        setCartItems([]) // Clear the cart items after creating the order
-        clearCart(userId)
-        alert('order complete');
+        setCartItems([]);
+        clearCart(userId);
+        alert('Order complete');
       } else {
-        console.error('Failed to create order')
+        console.error('Failed to create order');
       }
     } catch (error) {
-      console.error('Error creating order:', error)
+      console.error('Error creating order:', error);
     }
-  }
+  };
+  
 
   const clearCart = async (userId) => {
     try {
