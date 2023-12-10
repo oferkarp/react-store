@@ -94,7 +94,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct, refreshPage })
           {/* Display login button if not logged in */}
           {!token && location.pathname !== '/login' && (
             <li className="nav-item" style={{ marginRight: '10px' }}>
-              <Link className="btn btn-success" to="/login">
+              <Link className="btn btn-success" to="/react-store/login">
                 Login
               </Link>
             </li>

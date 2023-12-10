@@ -104,7 +104,7 @@ function searchproduct(filterdProductname) {
           />
           <Route path="/react-store/login" element={<Login refreshPage={refreshPage} />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/add_product" element={<Addproduct />} />
+          {/* <Route path="/add_product" element={<Addproduct />} /> */}
           <Route path="/cart/:userId" element={<Cart />} />
           <Route path="/order/:userId" element={<Order />} />
           <Route path='/register' element={<Registration />} />
