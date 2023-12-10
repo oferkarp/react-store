@@ -11,6 +11,8 @@ import Home from './components/Home'
 import Cart from './components/Cart'
 import Registration from './components/Registration'
 import Order from './components/Order'
+import { HashRouter } from 'react-router-dom';
+
 
 function App() {
   const HOST_URL = "https://django-rest-framework-store.onrender.com/products";
@@ -85,7 +87,7 @@ function searchproduct(filterdProductname) {
 
   return (
     <>
-      <BrowserRouter key={key}>
+      <HashRouter key={key}>
         <Navbar categories={cateogries} handleCategoryClick={handleCategoryClick} searchproduct={searchproduct} refreshPage={refreshPage} />
         <Routes>
           <Route
@@ -102,16 +104,16 @@ function searchproduct(filterdProductname) {
               </>
             }
           />
-          <Route path="/react-store/login" element={<Login refreshPage={refreshPage} />} />
+          <Route path="/login" element={<Login refreshPage={refreshPage} />} />
           <Route path="/home" element={<Home />} />
-          {/* <Route path="/add_product" element={<Addproduct />} /> */}
+          <Route path="/add_product" element={<Addproduct />} />
           <Route path="/cart/:userId" element={<Cart />} />
           <Route path="/order/:userId" element={<Order />} />
           <Route path='/register' element={<Registration />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         <MyFooter />
-      </BrowserRouter>
+        </HashRouter>
     </>
   )
 }
