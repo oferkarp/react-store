@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-function Login() {
+function Login({refreshPage}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -27,10 +27,10 @@ function Login() {
       console.log('Login successful!', response.data)
 
       // Redirect to the main page after successful login
-      navigate('/react-store') // Replace '/' with the desired route
-      window.location.reload() // Reload the page after logout
+      navigate('/react-store') 
+      
+      refreshPage(); // Call the refreshPage function from props
 
-      // Optionally, redirect or update state to reflect login success
     } catch (error) {
       // Handle login failure (e.g., display error message)
       setError('Invalid username or password')

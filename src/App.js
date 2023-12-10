@@ -17,7 +17,12 @@ function App() {
   const [products, setProducts] = useState([])
   const [cateogries, setCategories] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([""])
-  
+  const [key, setKey] = useState(0);
+
+// logout and login refresh
+  const refreshPage = () => {
+    setKey((prevKey) => prevKey + 1); // Update the key to force a refresh
+  };
 
   useEffect(getCategories, []) // when loading the page for the first time - getCategories()
 
@@ -80,8 +85,8 @@ function searchproduct(filterdProductname) {
 
   return (
     <>
-      <BrowserRouter>
-        <Navbar categories={cateogries} handleCategoryClick={handleCategoryClick} searchproduct={searchproduct} />
+      <BrowserRouter key={key}>
+        <Navbar categories={cateogries} handleCategoryClick={handleCategoryClick} searchproduct={searchproduct} refreshPage={refreshPage} />
         <Routes>
           <Route
             path="/react-store"
@@ -97,7 +102,7 @@ function searchproduct(filterdProductname) {
               </>
             }
           />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login refreshPage={refreshPage} />} />
           <Route path="/home" element={<Home />} />
           <Route path="/add_product" element={<Addproduct />} />
           <Route path="/cart/:userId" element={<Cart />} />

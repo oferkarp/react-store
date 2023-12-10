@@ -69,7 +69,7 @@ function Order() {
       {orders.map((order) => (
         <div key={order.id}>
           {/* <p>Order ID: {order.id}</p> */}
-          <p>Date: {order.create_date}</p>
+          <p>Date: {new Date(order.create_date).toLocaleString()}</p>
           <div className="cart-items">
             {order.cart_items.map((cartItem) => {
               const product = productData[cartItem.product];

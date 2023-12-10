@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode' // Importing the named export directly wi
 import axios from 'axios'
 import '../App.css'
 
-function Navbar({ categories, handleCategoryClick, searchproduct }) {
+function Navbar({ categories, handleCategoryClick, searchproduct, refreshPage }) {
   const [filterdProductname, setFilteredProductname] = useState('')
   const location = useLocation()
   const [token, setToken] = useState('')
@@ -52,7 +52,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
   const handleLogout = () => {
     localStorage.removeItem('token')
     setUsername('')
-    window.location.reload() // Reload the page after logout
+    refreshPage(); // Call the refreshPage function from props
     navigate('/react-store')
   }
 
