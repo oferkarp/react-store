@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import Product from './components/product'
 import Navbar from './components/Navbar'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import Login from './components/Login'
 import NoPage from './components/NoPage'
 import MyFooter from './components/MyFooter'
@@ -11,7 +11,7 @@ import Home from './components/Home'
 import Cart from './components/Cart'
 import Registration from './components/Registration'
 import Order from './components/Order'
-import { HashRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 
 
 function App() {
