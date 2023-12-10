@@ -38,7 +38,7 @@ function App() {
       })
   }, [filteredProducts])
 
-
+// get all the category from backend
   function getCategories() {
     axios
       .get(HOST_URL + "/category/")
@@ -102,7 +102,7 @@ function searchproduct(filterdProductname) {
               </>
             }
           />
-          <Route path="/login" element={<Login refreshPage={refreshPage} />} />
+          <Route path="/react-store/login" element={<Login refreshPage={refreshPage} />} />
           <Route path="/home" element={<Home />} />
           <Route path="/add_product" element={<Addproduct />} />
           <Route path="/cart/:userId" element={<Cart />} />
