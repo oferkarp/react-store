@@ -8,6 +8,7 @@ function Cart() {
   const [productData, setProductData] = useState({})
   const { userId } = useParams()
 
+  // Fetches cart items for a specific user from the server
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
@@ -45,6 +46,8 @@ function Cart() {
     fetchCartItems();
   }, [userId]);
 
+
+  // Fetches product details for each cart item
   useEffect(() => {
     const fetchProduct = async (productId) => {
       try {
@@ -75,6 +78,7 @@ function Cart() {
   }, [cartItems, productData]);
   
 
+  // Deletes a specific item from the cart
   const deleteCartItem = async (productId) => {
     try {
       const authToken = localStorage.getItem('token');
@@ -101,6 +105,7 @@ function Cart() {
   };
   
 
+  // Initiates the checkout process
   const checkout = async () => {
     try {
       console.log('Cart Items:', cartItems);
@@ -134,6 +139,7 @@ function Cart() {
   };
   
 
+  // Clears the entire cart for a user
   const clearCart = async (userId) => {
     try {
       const authToken = localStorage.getItem('token')
@@ -162,6 +168,7 @@ function Cart() {
     }
   }
 
+  // Rendering the cart interface
   return (
     <div className="cart-container">
       <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Your cart</h2>

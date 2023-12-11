@@ -7,6 +7,7 @@ function Order() {
   const [productData, setProductData] = useState({});
   const { userId } = useParams();
 
+  // Fetches orders for a specific user from the server
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -32,6 +33,8 @@ function Order() {
     fetchOrders();
   }, [userId]);
 
+
+  // Fetches product details for each item in the user's orders
   useEffect(() => {
     const fetchProduct = async (productId) => {
       try {
@@ -63,6 +66,8 @@ function Order() {
     });
   }, [orders, productData]);
 
+
+  // Renders the list of orders and their respective items
   return (
     <div>
       <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Orders</h2>
