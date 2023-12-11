@@ -62,7 +62,7 @@ function Product({ product }) {
         <Card.Body>
           <Card.Title>{product.name}</Card.Title>
           <Card.Text><strong>Price:</strong> ${parseFloat(product.price).toFixed(2)}</Card.Text>
-          <Card.Text><strong>Stock:</strong> {product.stock}</Card.Text>
+          {/* <Card.Text><strong>Stock:</strong> {product.stock}</Card.Text> */}
           <Card.Text><strong>Description:</strong>{product.description}</Card.Text>
           {storedToken && (
             <Button variant="primary" onClick={() => handleAddToCart(product.id, userid)}>

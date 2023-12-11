@@ -24,7 +24,7 @@ function Login({refreshPage}) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${access}`; // Use 'access' for the token
 
       // Handle the response accordingly (e.g., save authentication token)
-      console.log('Login successful!', response.data)
+      // console.log('Login successful!', response.data)
 
       // Redirect to the main page after successful login
       navigate('/react-store') 

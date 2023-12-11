@@ -60,12 +60,10 @@ function App() {
 
   
 function searchproduct(filterdProductname) {
-  // console.log(filterdProductname);
-
   axios
     .get(HOST_URL + "/?search=" + filterdProductname)
     .then((response) => {
-      console.log('product', response.data);
+      // console.log('product', response.data);
       if (response.data.length === 0) {
         // Alert when no products are found
         alert("No products found for the search");
@@ -80,8 +78,6 @@ function searchproduct(filterdProductname) {
       console.error('Error fetching data:', error);
       // Handle the error, for instance, displaying an error message
     });
-  
-  setFilteredProducts(""); // Clear the search input
 }
 
 

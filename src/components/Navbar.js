@@ -56,6 +56,13 @@ function Navbar({ categories, handleCategoryClick, searchproduct, refreshPage })
     navigate('/react-store')
   }
 
+  const handleSearch = () => {
+    const searchTerm = filterdProductname || ''; // Use the current state value or an empty string
+    searchproduct(searchTerm);
+    setFilteredProductname(''); // Clear the search input after search
+  };
+  
+  
   return (
     <>
       <nav className="navbar">
@@ -85,7 +92,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct, refreshPage })
             <Link
               to="/react-store"
               className="btn btn-info"
-              onClick={() => searchproduct(filterdProductname)}
+              onClick={handleSearch} // Modify here to just invoke the handleSearch function directly
               style={{ borderRadius: '5px', padding: '8px 20px', fontSize: '16px', marginRight: '10px' }}
             >
               Search
